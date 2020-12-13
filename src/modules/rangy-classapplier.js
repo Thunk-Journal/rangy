@@ -409,12 +409,13 @@ rangy.createModule("ClassApplier", ["WrappedSelection"], function(api, module) {
     }
 
     function areElementsMergeable(el1, el2) {
-        return el1.namespaceURI == el2.namespaceURI &&
-            el1.tagName.toLowerCase() == el2.tagName.toLowerCase() &&
-            haveSameClasses(el1, el2) &&
-            elementsHaveSameNonClassAttributes(el1, el2) &&
-            getComputedStyleProperty(el1, "display") == "inline" &&
-            getComputedStyleProperty(el2, "display") == "inline";
+        return false;
+        // return el1.namespaceURI == el2.namespaceURI &&
+        //     el1.tagName.toLowerCase() == el2.tagName.toLowerCase() &&
+        //     haveSameClasses(el1, el2) &&
+        //     elementsHaveSameNonClassAttributes(el1, el2) &&
+        //     getComputedStyleProperty(el1, "display") == "inline" &&
+        //     getComputedStyleProperty(el2, "display") == "inline";
     }
 
     function createAdjacentMergeableTextNodeGetter(forward) {
