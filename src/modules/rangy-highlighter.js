@@ -499,9 +499,9 @@ rangy.createModule("Highlighter", ["ClassApplier"], function(api, module) {
             return this.getHighlightsInSelection(selection).length > 0;
         },
 
-        serialize: function(options) {
+        serialize: function(options, _highlights) {
             var highlighter = this;
-            var highlights = highlighter.highlights;
+            var highlights = _highlights == null ? highlighter.highlights : _highlights;
             var serializedType, serializedHighlights, convertType, serializationConverter;
 
             highlights.sort(compareHighlights);
