@@ -12,6 +12,7 @@
  * Version: %%build:version%%
  * Build date: %%build:date%%
  */
+/* build:modularizeWithRangyDependency */
 rangy.createModule("Position", ["WrappedSelection"], function(api, module) {
     //var log = log4javascript.getLogger("rangy.position");
 
@@ -19,7 +20,7 @@ rangy.createModule("Position", ["WrappedSelection"], function(api, module) {
     var WrappedRange = api.WrappedRange;
     var WrappedTextRange = api.WrappedTextRange;
     var dom = api.dom, util = api.util, DomPosition = dom.DomPosition;
-    
+
     // Feature detection
 
     //var caretPositionFromPointSupported = (typeof document.caretPositionFromPoint != UNDEF);
@@ -106,7 +107,7 @@ rangy.createModule("Position", ["WrappedSelection"], function(api, module) {
             Math.min.apply(Math, lefts)
         );
     }
-    
+
     function getTextRangePosition(doc, x, y) {
         var textRange = dom.getBody(doc).createTextRange();
         textRange.moveToPoint(x, y);
@@ -136,7 +137,7 @@ rangy.createModule("Position", ["WrappedSelection"], function(api, module) {
 
     function positionFromPoint(doc, x, y, favourPrecedingPosition) {
         var el = doc.elementFromPoint(x, y);
-        
+
         console.log("elementFromPoint is ", el);
 
         var range = api.createRange(doc);
@@ -206,7 +207,7 @@ rangy.createModule("Position", ["WrappedSelection"], function(api, module) {
             throw module.createError("createCaretPositionFromPointGetter(): Browser does not provide a recognised method to create a selection from pixel coordinates");
         }
     }
-    
+
     function createRangeFromPoints(startX, startY, endX, endY, doc) {
         doc = dom.getContentDocument(doc, module, "createRangeFromPoints");
         var positionFinder = createCaretPositionFromPointGetter(doc);
@@ -241,7 +242,7 @@ rangy.createModule("Position", ["WrappedSelection"], function(api, module) {
         sel.setSingleRange(range);
         return sel;
     }
-    
+
     // Test that <span> elements support getBoundingClientRect
     var span = document.createElement("span");
     var elementSupportsGetBoundingClientRect = util.isHostMethod(span, "getBoundingClientRect");
@@ -526,12 +527,13 @@ rangy.createModule("Position", ["WrappedSelection"], function(api, module) {
         getStartDocumentPos: createSelectionBoundaryPosGetter(true, true),
         getEndDocumentPos: createSelectionBoundaryPosGetter(false, true)
     });
-    
+
     api.positionFromPoint = function(x, y, doc) {
         doc = dom.getContentDocument(doc, module, "positionFromPoint");
         return createCaretPositionFromPointGetter(doc)(doc, x, y);
     };
-    
+
     api.createRangeFromPoints = createRangeFromPoints;
     api.moveSelectionToPoints = moveSelectionToPoints;
 });
+/* build:modularizeEnd */
