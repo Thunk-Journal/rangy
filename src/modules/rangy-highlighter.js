@@ -551,7 +551,7 @@ rangy.createModule("Highlighter", ["ClassApplier"], function(api, module) {
 
         deserialize: function(serialized) {
             var serializedHighlights = serialized.split("|");
-            var highlights = [];
+            var highlights = this.highlights;
 
             var firstHighlight = serializedHighlights[0];
             var regexResult;
