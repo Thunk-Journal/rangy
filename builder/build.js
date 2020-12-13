@@ -26,7 +26,8 @@ var modules = [
     "rangy-serializer.js",
     "rangy-selectionsaverestore.js",
     "rangy-textrange.js",
-    "rangy-highlighter.js"
+    "rangy-highlighter.js",
+    "rangy-position.js"
 ];
 
 var allScripts = [coreFilename].concat(modules);
